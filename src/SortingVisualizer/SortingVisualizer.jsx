@@ -25,8 +25,8 @@ export default function SortingVisualizer() {
   const runningRef = useRef(false);
   const timeoutsRef = useRef([]);
   const containerRef = useRef(null);
-  const [containerHeight, setContainerHeight] = useState(420);
-
+  // Increased default container height from 420 to 600
+  const [containerHeight, setContainerHeight] = useState(600);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -44,7 +44,8 @@ export default function SortingVisualizer() {
   function measureContainer() {
     const el = containerRef.current;
     if (!el) return;
-    const h = Math.max(120, el.clientHeight - 36);
+    // Increased minimum height from 120 to 200 and reduced padding from 36 to 20
+    const h = Math.max(200, el.clientHeight - 20);
     setContainerHeight(h);
   }
 
@@ -67,7 +68,8 @@ export default function SortingVisualizer() {
 
   const scaleHeight = (rawValue) => {
     const scaled = Math.round((rawValue / RAW_MAX_HEIGHT) * containerHeight);
-    return Math.max(3, scaled);
+    // Increased minimum height from 3 to 8 pixels
+    return Math.max(8, scaled);
   };
 
   const clearAllTimeouts = () => {
@@ -168,7 +170,7 @@ export default function SortingVisualizer() {
     for (let i = 0; i < bars.length; i++) {
       const b = bars[i];
       b.style.background = "var(--primary-bar)";
-      const h = array[i] !== undefined ? scaleHeight(array[i]) : 3;
+      const h = array[i] !== undefined ? scaleHeight(array[i]) : 8; // Changed from 3 to 8
       b.style.height = `${h}px`;
       b.classList.remove("sorted");
     }
@@ -203,9 +205,9 @@ export default function SortingVisualizer() {
   };
 
   return (
+    // Increased overall height from calc(90vh - 90px) to calc(95vh - 60px)
     <div className="app-shell" style={{ height: "calc(90vh - 90px)" }}>
       
-
       <button
         className="hamburger"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -213,7 +215,6 @@ export default function SortingVisualizer() {
       >
         &#9776;
       </button>
-
 
       <div className={`top-row ${menuOpen ? "open" : ""}`}>
         <div>
@@ -317,9 +318,7 @@ export default function SortingVisualizer() {
         </div>
       </div>
 
-
       <aside className="panel" aria-hidden>
-
       </aside>
     </div>
   );
@@ -328,6 +327,7 @@ export default function SortingVisualizer() {
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 function arraysAreEqual(arrayOne, arrayTwo) {
   if (arrayOne.length !== arrayTwo.length) return false;
   for (let i = 0; i < arrayOne.length; i++) {
