@@ -1,0 +1,34 @@
+/* App.css — slim header/footer for the demo */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: transparent;
+}
+
+.app-header {
+  text-align: center;
+  padding: 8px 12px;           /* reduced padding */
+  color: #e6eef3;
+  line-height: 1.15;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 18px;             /* slightly smaller title */
+  font-weight: 700;
+}
+
+.app-header p {
+  margin: 6px 0 0;
+  color: #b7c6cc;
+  font-size: 13px;             /* smaller subtitle so header doesn't take too much space */
+}
+
+.app-footer {
+  text-align: center;
+  color: #9fb0b7;
+  padding: 8px 0;              /* smaller footer padding */
+  font-size: 13px;
+}
